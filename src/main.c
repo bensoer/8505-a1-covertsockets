@@ -287,8 +287,6 @@ main(int argc, char **argv){
 		}
 	}
 
-	//int useack, int usetos, int usesrc, int useflags
-
 	/* Do the dirty work */
 	forgepacket(source_host, dest_host, source_port, dest_port
 	,filename,server,ipid,seq,ack, usettl, usesp, usedp, usewin, useack, usetos, usesrc, useflags);
