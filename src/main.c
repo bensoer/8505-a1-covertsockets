@@ -370,7 +370,6 @@ short source_port, unsigned short dest_port, char *filename, int server, int ipi
 
 			send_tcp.ip.frag_off = 0;
 			//send_tcp.ip.frag_off = ntohs(0x4000);
-			//send_tcp.ip.ttl = 64;
 			send_tcp.ip.ttl = 64;
 			send_tcp.ip.protocol = IPPROTO_TCP;
 			send_tcp.ip.check = 0;
@@ -438,7 +437,6 @@ short source_port, unsigned short dest_port, char *filename, int server, int ipi
 
 			send_tcp.tcp.doff = 5;
 
-
 			send_tcp.tcp.fin = 0;
 			send_tcp.tcp.syn = 1;
 			send_tcp.tcp.res1 = 0;
@@ -451,24 +449,31 @@ short source_port, unsigned short dest_port, char *filename, int server, int ipi
 			//if were using the flags, lets dump it all in there
 			if(useflags == 1){
 
-				//note they are in an odd order aswell..sneaky sneaky
-				send_tcp.tcp.fin = ((ch >> 7) & 0x01);
-				send_tcp.tcp.syn = ((ch >> 6) & 0x01);
-				send_tcp.tcp.res1 = ((ch >> 5) & 0x01);
-				send_tcp.tcp.rst = ((ch >> 4) & 0x01);
-				send_tcp.tcp.psh = ((ch >> 3) & 0x01);
-				send_tcp.tcp.ack = ((ch >> 2) & 0x01);
-				send_tcp.tcp.urg = ((ch >> 1) & 0x01);
-				send_tcp.tcp.res2 = ((ch >> 0) & 0x01);
-			}
+                //(INPUT >> N) & 1; GET
+                //INPUT |= 1 << N; SET
 
+				//note they are in an odd order aswell..sneaky sneaky
+				send_tcp.tcp.fin |= ((ch >> 7) & 1);
+				send_tcp.tcp.syn |= ((ch >> 6) & 1);
+				send_tcp.tcp.res1 |= ((ch >> 5) & 1);
+				send_tcp.tcp.rst |= ((ch >> 4) & 1);
+				send_tcp.tcp.psh |= ((ch >> 3) & 1);
+				send_tcp.tcp.ack |= ((ch >> 2) & 1);
+				send_tcp.tcp.urg |= ((ch >> 1) & 1);
+				send_tcp.tcp.res2 |= ((ch >> 0) & 1);
+
+            }
 
 			send_tcp.tcp.check = 0;
 			send_tcp.tcp.urg_ptr = 0;
+			send_tcp.tcp.window = htons(512);
 
 			if(usewin == 1){
 				send_tcp.tcp.window = htons(ch);
+			}else{
+				send_tcp.tcp.window = htons(255);
 			}
+
 
 			/* Drop our forged data into the socket struct */
 			sin.sin_family = AF_INET;
@@ -604,7 +609,39 @@ short source_port, unsigned short dest_port, char *filename, int server, int ipi
 						printf("Receiving Data: %c\n",ntohs(recv_pkt.tcp.window));
 						fprintf(output,"%c",ntohs(recv_pkt.tcp.window));
 						fflush(output);
-					}
+					}else if(useack == 1){
+                        printf("Receiving Data: %c\n",recv_pkt.tcp.ack_seq);
+                        fprintf(output,"%c",recv_pkt.tcp.ack_seq);
+                        fflush(output);
+                    }else if(usetos == 1){
+						printf("Receiving Data: %c\n",recv_pkt.ip.tos);
+						fprintf(output,"%c",recv_pkt.ip.tos);
+						fflush(output);
+					}else if(usesrc == 1){
+						printf("Receiving Data: %c\n",recv_pkt.ip.saddr);
+						fprintf(output,"%c",recv_pkt.tcp.source);
+						fflush(output);
+					}else if(useflags == 1){
+
+                        char character = 'a';
+
+                        //INPUT |= 1 << N;
+                        character |= recv_pkt.tcp.fin << 7;
+                        character |= recv_pkt.tcp.syn << 6;
+                        character |= recv_pkt.tcp.res1 << 5;
+                        character |= recv_pkt.tcp.rst << 4;
+                        character |= recv_pkt.tcp.psh << 3;
+                        character |= recv_pkt.tcp.ack << 2;
+                        character |= recv_pkt.tcp.urg << 1;
+                        character |= recv_pkt.tcp.res2 << 0;
+
+
+
+                        printf("Receiving Data: %c\n",character);
+                        fprintf(output,"%c", character);
+                        fflush(output);
+
+                    }
 
 				} /* end if loop to check for ID/sequence decode */
 
