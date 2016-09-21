@@ -106,6 +106,12 @@ int main(int argc, char * argv[]){
         return 1;
     }
 
+    //Create A Configuration Struct
+
+    //Generate Us An Endpoint Appropriate To The Settings
+
+    //Execute The Endpoint
+
 
     return 0;
 }
