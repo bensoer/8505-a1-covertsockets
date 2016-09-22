@@ -182,6 +182,10 @@ int main(int argc, char * argv[]){
 
     //Execute The Endpoint
     IEndpoint * endpoint = ef->getEndpoint(server);
+    if(endpoint == nullptr){
+        cout << "Covert Socket: There Was An Error Fetching The Endpoint. Aborting" << endl;
+        return 1;
+    }
     endpoint->setConfiguration(configuration);
     endpoint->execute();
 
