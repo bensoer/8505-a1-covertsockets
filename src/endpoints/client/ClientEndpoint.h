@@ -6,7 +6,7 @@
 #define INC_8505_A1_COVERTSOCKETS_CLIENTENDPOINT_H
 
 
-#include "IEndpoint.h"
+#include "../IEndpoint.h"
 
 class ClientEndpoint : public IEndpoint{
 

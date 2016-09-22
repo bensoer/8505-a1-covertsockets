@@ -2,17 +2,17 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/ServerEndpoint.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/ClientEndpoint.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/EndpointFactory.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/EndpointFactory.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/endpoints/server/ServerEndpoint.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/endpoints/client/ClientEndpoint.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/endpoints/EndpointFactory.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/endpoints/EndpointFactory.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/ServerEndpoint.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/endpoints/server/ServerEndpoint.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/utils/argparser.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/IEndpoint.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/ClientEndpoint.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/endpoints/IEndpoint.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/endpoints/client/ClientEndpoint.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/Configuration.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/IEndpoint.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/endpoints/IEndpoint.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />

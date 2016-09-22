@@ -5,7 +5,7 @@
 #ifndef INC_8505_A1_COVERTSOCKETS_IENDPOINT_H
 #define INC_8505_A1_COVERTSOCKETS_IENDPOINT_H
 
-#include "Configuration.h"
+#include "../Configuration.h"
 
 class IEndpoint {
 
