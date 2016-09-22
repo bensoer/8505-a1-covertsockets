@@ -8,10 +8,13 @@
 
 #include "IEndpoint.h"
 
-class ServerEndpoint : IEndpoint{
+class ServerEndpoint : public IEndpoint{
 
-
-
+private:
+    Configuration configuration;
+public:
+    void execute();
+    void setConfiguration(Configuration configuration);
 };
 
 

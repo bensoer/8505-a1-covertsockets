@@ -7,33 +7,11 @@
 
 
 #include "IEndpoint.h"
-#include "EndpointFactory.h"
+#include "Configuration.h"
+
 #include <iostream>
 
 using namespace std;
-
-struct Configuration {
-    int dest_host;
-    int source_host;
-    char desthost[80];
-    char srchost[80];
-    char filename[80];
-
-    int source_port;
-    int dest_port;
-
-    int seq;
-    int ack;
-    int ipid;
-    int usettl;
-    int usesp;
-    int usedp;
-    int usewin;
-    int useflags;
-    int usetos;
-    int usesrc;
-    int useack;
-};
 
 class EndpointFactory {
 
