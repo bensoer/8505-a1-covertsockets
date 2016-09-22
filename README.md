@@ -30,10 +30,10 @@ Alternatively using `g++` and manualy selecting all files to compile is possible
 original implementation in the `examples` folder. You will need `gcc` installed. Documentation on how to setup and
 operate Craig Rowland's implementation can be found in the `examples` folder.
 #Installation
-1) Clone the Repo
-2) Open terminal and `cd` to the project root
-3) Execute: `cmake .`
-4) The project will then be compiled. Output files are stored in the `/bin` folder
+1. Clone the Repo
+2. Open terminal and `cd` to the project root
+3. Execute: `cmake .`
+4. The project will then be compiled. Output files are stored in the `/bin` folder
 
 #Usage
 ##Covert Server
