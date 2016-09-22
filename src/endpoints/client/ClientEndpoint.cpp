@@ -19,6 +19,10 @@ void ClientEndpoint::setConfiguration(Configuration configuration) {
     this->configuration = configuration;
 }
 
+/**
+ * execute is the main function of the ClientEndpoint and initiates and processes the client tasks while
+ * the client is operational.
+ */
 void ClientEndpoint::execute() {
 
     struct send_tcp

@@ -11,6 +11,12 @@ EndpointFactory::EndpointFactory(Configuration configuration) {
     this->configuration = configuration;
 }
 
+/**
+ * getEndpoint is the main factory method that determines the endpoint to be used for the given configuration
+ * and parameter passed settings. It then returns an interface to the appropriate endpoint
+ * @param isServer Int - Setting as to whether this is the server or client operating
+ * @return IEndpoint* - An interface pointer to an IEndpoint inheriting class
+ */
 IEndpoint * EndpointFactory::getEndpoint(int isServer) {
 
     if (isServer == 0) {

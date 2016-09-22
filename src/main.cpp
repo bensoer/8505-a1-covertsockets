@@ -8,7 +8,13 @@
 
 using namespace std;
 
-/* Generic resolver from unknown source */
+/**
+ * host_convert converts the passed in hostname value to its matching IP. This function allows users
+ * to pass domain names as the source or destination addresses. This helper method will then make the
+ * DNS lookup required to resolve these names to their appropriate IP values
+ * @param hostname Const Char* the host name to be looked up and resolve to an ip
+ * @return Unsigned Int - The IP address of the host value
+ */
 unsigned int host_convert(const char *hostname)
 {
     static struct in_addr i;
@@ -27,7 +33,10 @@ unsigned int host_convert(const char *hostname)
     return i.s_addr;
 } /* end resolver */
 
-/* Tell them how to use this */
+/**
+ * usage is a helper method that prints out help instructions to the console
+ * @param progname Char* pointer to the name of the program to give the instructions context
+ */
 void usage(char *progname)
 {
     printf("Covert TCP usage: \n%s -dest dest_ip -source source_ip -file filename -source_port port -dest_port port -server [encode type]\n\n", progname);
@@ -62,6 +71,12 @@ void usage(char *progname)
 } /* end usage() */
 
 
+/**
+ * main is the main entry point for the program
+ * @param argc Int - The number of parameters that were passed to the program
+ * @param argv Char** - Array containing parameter values
+ * @return
+ */
 int main(int argc, char * argv[]){
 
     cout << "CovertSockets - Initalizing" << endl;

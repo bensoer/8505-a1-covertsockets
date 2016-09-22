@@ -18,7 +18,10 @@ void ServerEndpoint::setConfiguration(Configuration configuration) {
     this->configuration = configuration;
 }
 
-
+/**
+ * execute is the main function of the ServerEndpoint and initiates and process the server tasks while the
+ * server operates.
+ */
 void ServerEndpoint::execute() {
 
     struct recv_tcp

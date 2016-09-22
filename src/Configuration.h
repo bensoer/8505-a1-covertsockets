@@ -5,6 +5,11 @@
 #ifndef INC_8505_A1_COVERTSOCKETS_CONFIGURATION_H
 #define INC_8505_A1_COVERTSOCKETS_CONFIGURATION_H
 
+/**
+ * Configuration stores information about the configuration of the client or server. This is passed around
+ * the application so as to give context to the various components in terms of what state the application
+ * currently is in, and how it should operate under certain parameters
+ */
 struct Configuration {
     int dest_host;
     int source_host;

@@ -5,6 +5,12 @@
 #include <zconf.h>
 #include "IEndpoint.h"
 
+/**
+ * in_chsum is a helper method that generates a checksum value for the passed in ptr value of data
+ * @param ptr Unsigned Short* - Pointer to the data the checksum will be generated based off of
+ * @param nbytes Int - The number of bytes of data in the ptr
+ * @return Unsigned Short - The generated checksum
+ */
 unsigned short IEndpoint::in_cksum(unsigned short *ptr, int nbytes)
 {
     register long		sum;		/* assumes long == 32 bits */

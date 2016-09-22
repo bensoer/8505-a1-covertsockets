@@ -61,6 +61,15 @@ public:
 
     }
 
+    /**
+     * GetTagVal fetches a parameter value and then converts it to an integer to be returned. If the value
+     * can not be found, the defaultVal is returned
+     * @param preTag String - Represents the tag that comes before the desired to be parsed value
+     * @param argArray Char** - Array of arguments possibly containing the preTag and a value
+     * @param length int - The number of entries in the argArray
+     * @param defaultVal Int - The default value to be returned if the tag cannot be found
+     * @return Int - The value associated with the preTag
+     */
     int GetTagVal(string preTag, char *argArray[], int length, int defaultVal)
     {
         for(int i = 1; i < length; ++i)
@@ -83,6 +92,15 @@ public:
 
     }
 
+    /**
+     * HasTagVal determines whether a tag exists in the parameters. This does not check if a value is also set
+     * with the key. It only looks at whether the tag exists or not. This can be useful in scenarios where
+     * the tag itself represents a boolean setting
+     * @param preTag String - The tag being searched for if it exists
+     * @param argArray Char** - The array of tags
+     * @param length Int - The number of entries in the argArray
+     * @return Bool - The state of whether the preTag exists in the argArray or not. True = It does exist
+     */
     bool HasTagVal(string preTag, char *argArray[], int length){
         for(int i = 1; i < length; ++i)
         {
